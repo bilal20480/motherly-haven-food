@@ -49,7 +49,10 @@ if bg_img:
     """, unsafe_allow_html=True)
 
 # ✅ Configure Gemini API
-genai.configure(api_key="AIzaSyC9jEg8Icw6kMPs0tdncQKUCGtdeI_xINo")  # Replace with your actual Gemini API key
+api_key=st.secrets["bilal_api"]
+
+# Configure Gemini API key
+genai.configure(api_key=api_key)  # Replace with your actual Gemini API key
 
 # ✅ Initialize Gemini model
 model = genai.GenerativeModel("gemini-2.0-flash")
