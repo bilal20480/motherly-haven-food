@@ -11,7 +11,7 @@ st.set_page_config(page_title="Diet Planner", layout="wide")
 # Load background image and convert to base64
 def get_base64_image():
     for ext in ["webp", "jpg", "jpeg", "png"]:
-        image_path = f"bg.{ext}"
+        image_path = f"bgg.{ext}"
         if os.path.exists(image_path):
             with open(image_path, "rb") as img_file:
                 return base64.b64encode(img_file.read()).decode()
@@ -24,7 +24,7 @@ if bg_img:
     st.markdown(f"""
         <style>
         .stApp {{
-            background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.85)),
+            background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.5)),
                         url("data:image/png;base64,{bg_img}");
             background-size: cover;
             background-position: center;
@@ -45,14 +45,45 @@ if bg_img:
         .export-buttons {{
             margin-top: 20px;
         }}
+        
+        /* Custom sidebar styling */
+        [data-testid="stSidebar"] {{
+            background-color: #e4c3df !important;
+        }}
+        [data-testid="stSidebar"] .stRadio label, 
+        [data-testid="stSidebar"] .stSelectbox label,
+        [data-testid="stSidebar"] .stTextInput label,
+        [data-testid="stSidebar"] .stSlider label,
+        [data-testid="stSidebar"] .stMarkdown,
+        [data-testid="stSidebar"] .stHeader {{
+            color: #5c3b5e !important;
+        }}
+        [data-testid="stSidebar"] .stRadio div div div div {{
+            background-color: #f3e0f2 !important;
+        }}
+        [data-testid="stSidebar"] .stSelectbox select,
+        [data-testid="stSidebar"] .stTextInput input,
+        [data-testid="stSidebar"] .stSlider div div div div {{
+            background-color: #f3e0f2 !important;
+            color: #5c3b5e !important;
+            border-color: #d5b4cf !important;
+        }}
+        [data-testid="stSidebar"] .stButton button {{
+            background-color: #b36fa0 !important;
+            color: white !important;
+            border: none !important;
+        }}
+        [data-testid="stSidebar"] .stButton button:hover {{
+            background-color: #a14c86 !important;
+        }}
+        [data-testid="stSidebar"] .stHeader h3 {{
+            color: #a14c86 !important;
+        }}
         </style>
     """, unsafe_allow_html=True)
 
 # ✅ Configure Gemini API
-api_key=st.secrets["bilal_api"]
-
-# Configure Gemini API key
-genai.configure(api_key=api_key)  # Replace with your actual Gemini API key
+genai.configure(api_key="AIzaSyBYhKY9MQgCDX__BoKqvqx6z30VlnIAdsA")  # Replace with your actual Gemini API key
 
 # ✅ Initialize Gemini model
 model = genai.GenerativeModel("gemini-2.0-flash")
